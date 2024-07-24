@@ -56,7 +56,7 @@ export class MysqlDialect implements Dialect {
   }
 
   createAdapter(): DialectAdapter {
-    return new MysqlAdapter()
+    return new MysqlAdapter(this.#config.supportsReturning)
   }
 
   createIntrospector(db: Kysely<any>): DatabaseIntrospector {

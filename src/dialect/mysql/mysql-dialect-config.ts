@@ -16,6 +16,14 @@ export interface MysqlDialectConfig {
   pool: MysqlPool | (() => Promise<MysqlPool>)
 
   /**
+   * Indicates if the database supports returning the result set of inserted rows.
+   *
+   * Note: MariaDB databases versions 10.5 or higher support this feature.
+   * https://mariadb.com/kb/en/insertreturning/
+   */
+  supportsReturning?: boolean
+
+  /**
    * Called once for each created connection.
    */
   onCreateConnection?: (connection: DatabaseConnection) => Promise<void>

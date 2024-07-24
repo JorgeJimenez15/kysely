@@ -7,12 +7,16 @@ const LOCK_ID = 'ea586330-2c93-47c8-908d-981d9d270f9d'
 const LOCK_TIMEOUT_SECONDS = 60 * 60
 
 export class MysqlAdapter extends DialectAdapterBase {
+  constructor(private _supportsReturning?: boolean) {
+    super()
+  }
+
   get supportsTransactionalDdl(): boolean {
     return false
   }
 
   get supportsReturning(): boolean {
-    return false
+    return this._supportsReturning ?? false
   }
 
   async acquireMigrationLock(
